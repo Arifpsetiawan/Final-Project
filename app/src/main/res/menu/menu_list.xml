@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/match_menu"
+            android:title="@string/match_nav"
+            android:icon="@drawable/ic_match"/>
+    <item
+            android:id="@+id/team_menu"
+            android:title="@string/team_nav"
+            android:icon="@drawable/ic_team"/>
+    <item
+            android:id="@+id/favorite_menu"
+            android:title="@string/favorite_nav"
+            android:icon="@drawable/ic_favorite"/>
+</menu>
