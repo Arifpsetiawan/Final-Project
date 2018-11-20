@@ -39,7 +39,7 @@ class NextMatchFragment : Fragment(), MatchEventView {
         val view = inflater.inflate(R.layout.fragment_nextmatch, container, false)
         spinner = view.spinner_nextMatch
         val spinnerItems = resources.getStringArray(R.array.league)
-        val spinnerAdapter = ArrayAdapter(ctx, R.layout.spinner_dropdown_item, spinnerItems)
+        val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinner.adapter = spinnerAdapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
