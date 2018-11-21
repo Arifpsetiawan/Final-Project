@@ -16,7 +16,7 @@ class MatchPresenter (private val matchEventView: MatchEventView,
 ) {
 
     fun getMatchPastData(idLeague: String?){
-        async(context.main) {
+        GlobalScope.async(context.main) {
             val dataMatch = bg {
                 gson.fromJson(apiRequest
                     .doRequest(TheSportDBApi.getPastMatchEvent(idLeague))
@@ -29,7 +29,7 @@ class MatchPresenter (private val matchEventView: MatchEventView,
     }
 
     fun getMatchNextData(idLeague: String?) {
-        async(context.main) {
+        GlobalScope.async(context.main) {
             val dataMatch = bg {
                 gson.fromJson( apiRequest.doRequest(TheSportDBApi.getNextMatchEvent(idLeague))
                     , MatchItemResponse::class.java )

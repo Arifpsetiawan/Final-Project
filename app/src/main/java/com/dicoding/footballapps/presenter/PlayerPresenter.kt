@@ -17,7 +17,7 @@ class PlayerPresenter(private val view: PlayerView,
     fun getPlayerListData(id: String?) {
         view.showProgress()
 
-        async(contextProvider.main) {
+        GlobalScope.async(contextProvider.main) {
             val data = bg {
                 gson.fromJson(apiRequest.doRequest(TheSportDBApi.getAllPlayer(id)),
                     PlayerItemResponse::class.java)

@@ -18,7 +18,7 @@ class TeamPresenter(private val view: TeamView,
     fun getTeamListData(idLeague: String?) {
         view.showloading()
 
-        async(contextProvider.main) {
+        GlobalScope.async(contextProvider.main) {
             val data = bg {
                 gson.fromJson(apiRequest.doRequest(TheSportDBApi.getAllTeam(idLeague)),
                     TeamItemResponse::class.java)
@@ -31,7 +31,7 @@ class TeamPresenter(private val view: TeamView,
     fun getSearchTeamData(idTeamBadge: String?) {
         view.showloading()
 
-        async(contextProvider.main) {
+        GlobalScope.async(contextProvider.main) {
             val data = bg {
                 gson.fromJson(apiRequest.doRequest(TheSportDBApi.getSearchTeam(idTeamBadge)),
                     TeamItemResponse::class.java)

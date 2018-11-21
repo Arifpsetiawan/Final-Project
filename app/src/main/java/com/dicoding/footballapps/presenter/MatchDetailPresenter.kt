@@ -36,7 +36,7 @@ class MatchDetailPresenter (public val detailMatchEventView: DetailMatchView,
 
     fun getMatchEventDetail(idMatchEvent: String?){
 
-        async(context.main) {
+        GlobalScope.async(context.main) {
             val dataDetail = bg {
                 gson.fromJson(apiRequest.doRequest(
                     TheSportDBApi.getDetailMatchEvent(idMatchEvent))
