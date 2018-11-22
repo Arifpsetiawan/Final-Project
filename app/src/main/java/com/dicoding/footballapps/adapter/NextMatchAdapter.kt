@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.dicoding.footballapps.R
+import com.dicoding.footballapps.fragment.NextMatchFragment
 import com.dicoding.footballapps.model.MatchItem
 import org.jetbrains.anko.find
 import java.text.SimpleDateFormat

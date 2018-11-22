@@ -1,3 +1,5 @@
+package com.dicoding.footballapps.fragment
+
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -140,6 +142,5 @@ class NextMatchFragment : Fragment(), MatchEventView {
         dataItems.addAll(data)
         adapter.notifyDataSetChanged()
         hideProgress()
-
     }
 }

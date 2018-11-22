@@ -3,8 +3,8 @@ package com.dicoding.footballapps.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.dicoding.footballapps.fragment.NextMatchFragment
 import com.dicoding.footballapps.fragment.PastMatchFragment
+import com.dicoding.footballapps.fragment.NextMatchFragment
 
 class MatchAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
