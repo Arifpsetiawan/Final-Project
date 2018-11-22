@@ -18,10 +18,10 @@ class PlayerPresenter(private val view: PlayerView,
 
         GlobalScope.launch(Dispatchers.Main) {
             val data = gson.fromJson(apiRequest
-                .doRequest(TheSportDBApi.getAllPlayer(id)),
+                .doRequest(TheSportDBApi.getAllPlayer(id)).await(),
                     PlayerItemResponse::class.java)
 
-            view.showPlayerListData(data.await().player)
+            view.showPlayerListData(data.player)
             view.hideProgress()
         }
     }

@@ -16,20 +16,20 @@ class MatchPresenter (private val matchEventView: MatchEventView,
     fun getMatchPastData(idLeague: String?){
         GlobalScope.launch(Dispatchers.Main) {
             val dataMatch = gson.fromJson(apiRequest
-                    .doRequest(TheSportDBApi.getPastMatchEvent(idLeague)),
+                    .doRequest(TheSportDBApi.getPastMatchEvent(idLeague)).await(),
                 MatchItemResponse::class.java)
 
-            matchEventView.showDataMatchList(dataMatch.await().events)
+            matchEventView.showDataMatchList(dataMatch.events)
         }
     }
 
     fun getMatchNextData(idLeague: String?) {
         GlobalScope.launch(Dispatchers.Main) {
             val dataMatch = gson.fromJson( apiRequest
-                .doRequest(TheSportDBApi.getNextMatchEvent(idLeague)),
+                .doRequest(TheSportDBApi.getNextMatchEvent(idLeague)).await(),
                 MatchItemResponse::class.java )
 
-            matchEventView.showDataMatchList(dataMatch.await().events)
+            matchEventView.showDataMatchList(dataMatch.events)
         }
     }
 }

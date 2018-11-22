@@ -17,10 +17,10 @@ class SearchMatchPresenter(private val view: SearchMatchView,
         view.showProgress()
         GlobalScope.launch(Dispatchers.Main) {
             val data = gson.fromJson(apiRequest
-                .doRequest(TheSportDBApi.getSearchMatch(idSearch)),
+                .doRequest(TheSportDBApi.getSearchMatch(idSearch)).await(),
                     EventResponse::class.java )
 
-            view.showListEvent(data.await().event)
+            view.showListEvent(data.event)
             view.hideProgress()
         }
     }

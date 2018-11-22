@@ -9,7 +9,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.Deferred
 
 class MatchDetailPresenter (private val detailMatchEventView: DetailMatchView,
                             private val apiRequest: ApiRepository,
@@ -19,7 +18,7 @@ class MatchDetailPresenter (private val detailMatchEventView: DetailMatchView,
 
         GlobalScope.launch(Dispatchers.Main) {
             val dataTeam = gson.fromJson(apiRequest
-                .doRequest(TheSportDBApi.getBadgeTeam(team)),
+                .doRequest(TheSportDBApi.getBadgeTeam(team)).await(),
                 BadgeResponse::class.java)
 
             if(teamType == "Away")
@@ -35,10 +34,10 @@ class MatchDetailPresenter (private val detailMatchEventView: DetailMatchView,
         GlobalScope.launch(Dispatchers.Main) {
             val dataDetail =
                 gson.fromJson(apiRequest.doRequest(
-                    TheSportDBApi.getDetailMatchEvent(idMatchEvent)),
+                    TheSportDBApi.getDetailMatchEvent(idMatchEvent)).await(),
                     DetailMatchResponse::class.java)
 
-            detailMatchEventView.showDetailMatch(dataDetail.await().events)
+            detailMatchEventView.showDetailMatch(dataDetail.events)
         }
     }
 }

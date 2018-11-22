@@ -18,10 +18,10 @@ class TeamPresenter(private val view: TeamView,
         view.showloading()
 
         GlobalScope.launch(Dispatchers.Main) {
-            val data = gson.fromJson(apiRequest.doRequest(TheSportDBApi.getAllTeam(idLeague)),
+            val data = gson.fromJson(apiRequest.doRequest(TheSportDBApi.getAllTeam(idLeague)).await(),
                     TeamItemResponse::class.java)
 
-            view.showTeamListData(data.await().teams)
+            view.showTeamListData(data.teams)
             view.hideloading()
         }
     }
@@ -30,10 +30,10 @@ class TeamPresenter(private val view: TeamView,
         view.showloading()
 
         GlobalScope.launch(Dispatchers.Main) {
-            val data = gson.fromJson(apiRequest.doRequest(TheSportDBApi.getSearchTeam(idTeamBadge)),
+            val data = gson.fromJson(apiRequest.doRequest(TheSportDBApi.getSearchTeam(idTeamBadge)).await(),
                     TeamItemResponse::class.java)
 
-            view.showTeamListData(data.await().teams)
+            view.showTeamListData(data.teams)
             view.hideloading()
 
 
