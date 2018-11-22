@@ -3,26 +3,24 @@ package com.dicoding.footballapps.presenter
 import com.dicoding.footballapps.api.ApiRepository
 import com.dicoding.footballapps.api.TheSportDBApi
 import com.dicoding.footballapps.model.TeamItemResponse
-import com.dicoding.footballapps.utils.CoroutineContextProvider
 import com.dicoding.footballapps.view.TeamView
 import com.google.gson.Gson
-import kotlinx.coroutines.experimental.async
-import org.jetbrains.anko.coroutines.experimental.bg
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class TeamPresenter(private val view: TeamView,
                     private val apiRequest: ApiRepository,
-                    private val gson: Gson,
-                    private val contextProvider: CoroutineContextProvider = CoroutineContextProvider()) {
+                    private val gson: Gson) {
 
 
     fun getTeamListData(idLeague: String?) {
         view.showloading()
 
-        GlobalScope.async(contextProvider.main) {
-            val data = bg {
-                gson.fromJson(apiRequest.doRequest(TheSportDBApi.getAllTeam(idLeague)),
+        GlobalScope.launch(Dispatchers.Main) {
+            val data = gson.fromJson(apiRequest.doRequest(TheSportDBApi.getAllTeam(idLeague)),
                     TeamItemResponse::class.java)
-            }
+
             view.showTeamListData(data.await().teams)
             view.hideloading()
         }
@@ -31,11 +29,10 @@ class TeamPresenter(private val view: TeamView,
     fun getSearchTeamData(idTeamBadge: String?) {
         view.showloading()
 
-        GlobalScope.async(contextProvider.main) {
-            val data = bg {
-                gson.fromJson(apiRequest.doRequest(TheSportDBApi.getSearchTeam(idTeamBadge)),
+        GlobalScope.launch(Dispatchers.Main) {
+            val data = gson.fromJson(apiRequest.doRequest(TheSportDBApi.getSearchTeam(idTeamBadge)),
                     TeamItemResponse::class.java)
-            }
+
             view.showTeamListData(data.await().teams)
             view.hideloading()
 
