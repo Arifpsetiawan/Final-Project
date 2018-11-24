@@ -10,32 +10,34 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MatchDetailPresenter (private val detailMatchEventView: DetailMatchView,
-                            private val apiRequest: ApiRepository,
-                            private val gson: Gson) {
+class MatchDetailPresenter(
+    private val detailMatchEventView: DetailMatchView,
+    private val apiRequest: ApiRepository,
+    private val gson: Gson
+) {
 
-    fun getTeamBadge( team: String?, teamType: String? ){
+    fun getTeamBadge(team: String?, teamType: String?) {
 
         GlobalScope.launch(Dispatchers.Main) {
-            val dataTeam = gson.fromJson(apiRequest
-                .doRequest(TheSportDBApi.getBadgeTeam(team)).await(),
-                BadgeResponse::class.java)
+            val dataTeam = gson.fromJson(
+                apiRequest.doRequest(TheSportDBApi.getBadgeTeam(team)).await(),
+                BadgeResponse::class.java
+            )
 
-            if(teamType == "Away")
+            if (teamType == "Away")
                 detailMatchEventView.showAwayTeamBadge(dataTeam.teams)
             else
                 detailMatchEventView.showHomeTeamBadge(dataTeam.teams)
-
         }
     }
 
-    fun getMatchEventDetail(idMatchEvent: String?){
+    fun getMatchEventDetail(idMatchEvent: String?) {
 
         GlobalScope.launch(Dispatchers.Main) {
-            val dataDetail =
-                gson.fromJson(apiRequest.doRequest(
-                    TheSportDBApi.getDetailMatchEvent(idMatchEvent)).await(),
-                    DetailMatchResponse::class.java)
+            val dataDetail = gson.fromJson(
+                apiRequest.doRequest(TheSportDBApi.getDetailMatchEvent(idMatchEvent)).await(),
+                DetailMatchResponse::class.java
+            )
 
             detailMatchEventView.showDetailMatch(dataDetail.events)
         }

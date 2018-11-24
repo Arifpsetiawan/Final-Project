@@ -2,9 +2,8 @@ package com.dicoding.footballapps.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-@Parcelize
 data class PlayerItem(
 
     @SerializedName("idTeam")
@@ -30,4 +29,4 @@ data class PlayerItem(
 
     @SerializedName("strFanart1")
     var strFanart1: String? = null
-) : Parcelable
+) : Serializable

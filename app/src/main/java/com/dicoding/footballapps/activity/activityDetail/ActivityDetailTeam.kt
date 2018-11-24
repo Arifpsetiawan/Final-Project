@@ -30,7 +30,7 @@ class ActivityDetailTeam : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_team)
 
-        teamData = intent.getParcelableExtra("team_data")
+        teamData = intent.getSerializableExtra("team_data") as TeamItem
 
         favoriteState()
 

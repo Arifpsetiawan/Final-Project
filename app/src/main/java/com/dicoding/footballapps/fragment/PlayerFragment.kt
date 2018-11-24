@@ -38,7 +38,7 @@ class PlayerFragment : Fragment(), PlayerView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        teamData = activity?.intent!!.getParcelableExtra("team_data")
+        teamData = activity?.intent!!.getSerializableExtra("team_data") as TeamItem
         id = teamData.idTeam
         Log.d("debug","Id Team : " +id)
 

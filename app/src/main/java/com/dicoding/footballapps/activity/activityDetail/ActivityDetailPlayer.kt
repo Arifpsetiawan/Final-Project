@@ -16,7 +16,7 @@ class ActivityDetailPlayer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_player)
 
-        playerData = intent.getParcelableExtra("player_data")
+        playerData = intent.getSerializableExtra("player_data") as PlayerItem
 
 
         if(playerData.strFanart1.isNullOrEmpty()){

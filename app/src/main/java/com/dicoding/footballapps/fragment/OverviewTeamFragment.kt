@@ -16,7 +16,7 @@ class OverviewTeamFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        teamData = activity?.intent!!.getParcelableExtra("team_data")
+        teamData = activity?.intent!!.getSerializableExtra("team_data") as TeamItem
         overview_team_detail.text = teamData.strDescriptionEN
     }
 
